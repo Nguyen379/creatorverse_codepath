@@ -1,41 +1,72 @@
+"use client";
 import Image from "next/image";
-import Card from "./components/Card";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import * as XLSX from "xlsx";
+import Card, { CardProps } from "./components/Card";
 
 // Mock data for demonstration
-const creators = [
+const creators2 = [
   {
     id: "1",
-    name: "Creator 1",
-    url: "https://example.com/1",
-    description: "Description 1",
+    name: "Gojo Satoru",
+    url: "https://jujutsu-kaisen.fandom.com/wiki/Satoru_Gojo",
+    description: "current strongest sorcerer",
+    imageURL:
+      "https://static1.dualshockersimages.com/wordpress/wp-content/uploads/2024/01/new-jujutsu-kaisen-theory-strongly-suggests-gojo-satoru-s-return.jpg",
   },
   {
     id: "2",
-    name: "Creator 2",
-    url: "https://example.com/2",
-    description: "Description 2",
+    name: "Ryoumen Sukuna",
+    url: "https://jujutsu-kaisen.fandom.com/wiki/Sukuna",
+    description: "history strongest sorcerer",
+    imageURL:
+      "https://static.wikia.nocookie.net/jujutsu-kaisen/images/8/85/Sukuna_%28Chapter_117%29.png/revision/latest?cb=20210309183727",
   },
   {
     id: "3",
-    name: "Creator 3",
-    url: "https://example.com/3",
-    description: "Description 3",
+    name: "peter parker",
+    url: "https://marvels-spider-man.fandom.com/wiki/Peter_Parker",
+    description: "Spiderman",
+    imageURL:
+      "https://image.api.playstation.com/vulcan/ap/rnd/202009/3021/SfK6snCLSX4qRfmIVQXrYXJK.png",
   },
   {
     id: "4",
-    name: "Creator 4",
-    url: "https://example.com/4",
-    description: "Description 4",
+    name: "Donald Trump",
+    url: "https://en.wikipedia.org/wiki/Donald_Trump",
+    description: "current strongest sorcerer",
+    imageURL:
+      "https://static.wikia.nocookie.net/jujutsu-kaisen/images/8/85/Sukuna_%28Chapter_117%29.png/revision/latest?cb=20210309183727",
   },
   {
     id: "5",
-    name: "Creator 5",
-    url: "https://example.com/5",
-    description: "Description 5",
+    name: "Gojo Satoru",
+    url: "https://frieren.fandom.com/wiki/Frieren",
+    description:
+      "Frieren ｢フリーレン Furīren?｣ is the main protagonist of Frieren: Beyond Journey's End. She was the Mage of the Hero Party and traveled alongside Himmel the Hero, Eisen the Warrior, and Heiter the Priest in a ten-year journey to defeat the Demon King. After Himmel's death, Frieren began journeying with Fern and Stark to visit Aureole and speak with Himmel once again.",
+    imageURL:
+      "https://cdn.vox-cdn.com/thumbor/PWNuyowyrraG2vH0UcQHB34QySQ=/0x0:1920x960/fit-in/1200x600/cdn.vox-cdn.com/uploads/chorus_asset/file/25349787/freiren3.jpg",
   },
 ];
 
 export default function Home() {
+  const [creators, setCreators] = useState<CardProps[]>([]);
+
+  useEffect(() => {
+    const loadCreators = async () => {
+      const response = await fetch("/creators.xlsx");
+      const arrayBuffer = await response.arrayBuffer();
+      const workbook = XLSX.read(arrayBuffer, { type: "array" });
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[sheetName];
+      const data = XLSX.utils.sheet_to_json(worksheet) as CardProps[];
+      setCreators(data);
+    };
+
+    loadCreators();
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* <main className="flex min-h-screen flex-col items-center justify-between p-24"> */}
@@ -74,10 +105,18 @@ export default function Home() {
           priority
         />
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      {console.log(creators)}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        
         {creators.map((creator) => (
-          <Card key={creator.id} {...creator} />
+          <Card
+            key={creator.id}
+            id={creator.id}
+            name={creator.name}
+            url={creator.url || ""}
+            description={creator.description}
+            imageURL={creator.imageURL}
+          />
         ))}
       </div>
 
