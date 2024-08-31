@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, FormEvent } from "react";
+import { useRouter, useParams } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 interface Creator {
@@ -11,7 +11,7 @@ interface Creator {
   imageURL: string;
 }
 
-export default function AddCreator(): JSX.Element {
+export default function EditCreator(): JSX.Element {
   const [creator, setCreator] = useState<Creator>({
     name: "",
     url: "",
@@ -19,8 +19,36 @@ export default function AddCreator(): JSX.Element {
     imageURL: "",
   });
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
+  const params = useParams();
+  const id = params.id;
   const supabase = createClientComponentClient();
+
+  useEffect(() => {
+    const fetchCreator = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("creators")
+          .select("*")
+          .eq("id", id)
+          .single();
+
+        if (error) throw error;
+
+        if (data) {
+          setCreator(data);
+        }
+      } catch (error) {
+        console.error("Error fetching creator:", error);
+        setError("Failed to fetch creator data. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCreator();
+  }, [id, supabase]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -36,18 +64,19 @@ export default function AddCreator(): JSX.Element {
     try {
       const { data, error } = await supabase
         .from("creators")
-        .insert([creator])
+        .update(creator)
+        .eq("id", id)
         .select();
 
       if (error) throw error;
 
       if (data) {
-        console.log("Creator added successfully:", data);
-        router.push("/");
+        console.log("Creator updated successfully:", data);
+        router.push("/ShowCreators");
       }
     } catch (error) {
-      console.error("Error adding creator:", error);
-      setError("Failed to add creator. Please try again.");
+      console.error("Error updating creator:", error);
+      setError("Failed to update creator. Please try again.");
     }
   };
 
@@ -55,10 +84,14 @@ export default function AddCreator(): JSX.Element {
     router.back(); // Go back to the previous page without saving
   };
 
+  if (loading) {
+    return <div className="text-center text-white">Loading...</div>;
+  }
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <h1 className="text-3xl font-bold mb-6 text-center text-white">
-        Add New Creator
+        Edit Creator
       </h1>
       {error && <p className="text-red-500 text-center mb-4">{error}</p>}
       <form
