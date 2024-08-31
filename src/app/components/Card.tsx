@@ -43,9 +43,17 @@ export default function Card({
           {description}
         </p>
         <div className="mt-2 flex justify-between items-center flex-row">
-          <button className="text-blue-500 font-semibold text-sm">SHARE</button>
-          <Link href={url} className="text-blue-500 font-semibold text-sm">
-            LEARN MORE
+          <Link
+            href={`/ViewCreator/${id}`}
+            className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 text-xs rounded w-[40%] text-center"
+          >
+            View
+          </Link>
+          <Link
+            href={`/EditCreator/${id}`}
+            className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 text-xs rounded w-[40%] text-center"
+          >
+            Edit
           </Link>
         </div>
       </div>
