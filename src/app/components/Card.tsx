@@ -24,7 +24,7 @@ export default function Card({
   return (
     <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
       {imageURL && (
-        <div className="relative h-48">
+        <div className="relative h-80">
           <Image
             loader={myLoader}
             src={imageURL}
