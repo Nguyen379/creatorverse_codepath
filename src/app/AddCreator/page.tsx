@@ -43,7 +43,7 @@ export default function AddCreator(): JSX.Element {
 
       if (data) {
         console.log("Creator added successfully:", data);
-        router.push("/");
+        router.push("/ShowCreators");
       }
     } catch (error) {
       console.error("Error adding creator:", error);

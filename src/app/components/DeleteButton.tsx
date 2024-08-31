@@ -7,10 +7,14 @@ import { useRouter } from "next/navigation";
 interface DeleteButtonProps {
   id: string;
   onDelete?: () => void;
-  className?: string;  // Add className prop for custom styling
+  className?: string; // Add className prop for custom styling
 }
 
-export default function DeleteButton({ id, onDelete, className }: DeleteButtonProps) {
+export default function DeleteButton({
+  id,
+  onDelete,
+  className,
+}: DeleteButtonProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const supabase = createClientComponentClient();
@@ -25,18 +29,13 @@ export default function DeleteButton({ id, onDelete, className }: DeleteButtonPr
       if (error) {
         throw error;
       }
-
-      if (onDelete) {
-        onDelete();
-      } else {
-        router.push("/ShowCreators");
-      }
     } catch (error) {
       console.error("Error deleting creator:", error);
       alert("Failed to delete creator. Please try again.");
     } finally {
       setIsDeleting(false);
       setShowConfirmation(false);
+      window.location.reload();
     }
   };
 
@@ -44,7 +43,10 @@ export default function DeleteButton({ id, onDelete, className }: DeleteButtonPr
     <>
       <button
         onClick={() => setShowConfirmation(true)}
-        className={className || "bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded text-lg"}
+        className={
+          className ||
+          "bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded text-lg"
+        }
       >
         Delete
       </button>
