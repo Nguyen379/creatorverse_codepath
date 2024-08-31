@@ -1,12 +1,10 @@
 "use client";
+
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import * as XLSX from "xlsx";
-import Card, { CardProps } from "./components/Card";
+import Card from "./components/Card";
 
 // Mock data for demonstration
-const creators2 = [
+const creators = [
   {
     id: "1",
     name: "Gojo Satoru",
@@ -51,22 +49,6 @@ const creators2 = [
 ];
 
 export default function Home() {
-  const [creators, setCreators] = useState<CardProps[]>([]);
-
-  useEffect(() => {
-    const loadCreators = async () => {
-      const response = await fetch("/creators.xlsx");
-      const arrayBuffer = await response.arrayBuffer();
-      const workbook = XLSX.read(arrayBuffer, { type: "array" });
-      const sheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[sheetName];
-      const data = XLSX.utils.sheet_to_json(worksheet) as CardProps[];
-      setCreators(data);
-    };
-
-    loadCreators();
-  }, []);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* <main className="flex min-h-screen flex-col items-center justify-between p-24"> */}
@@ -105,18 +87,10 @@ export default function Home() {
           priority
         />
       </div>
-      {console.log(creators)}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mt-8">
         {creators.map((creator) => (
-          <Card
-            key={creator.id}
-            id={creator.id}
-            name={creator.name}
-            url={creator.url || ""}
-            description={creator.description}
-            imageURL={creator.imageURL}
-          />
+          <Card key={creator.id} {...creator} />
         ))}
       </div>
 

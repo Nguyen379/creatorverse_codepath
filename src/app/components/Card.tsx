@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,30 +22,32 @@ export default function Card({
   imageURL,
 }: CardProps) {
   return (
-    <div className="relative bg-gradient-to-b from-yellow-300 to-yellow-400 rounded-lg overflow-hidden h-64 w-48">
+    <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
       {imageURL && (
-        <Image
-          loader={myLoader}
-          src={imageURL}
-          alt={name}
-          layout="fill"
-          style={{ objectFit: "cover" }}
-          className="opacity-30"
-        />
+        <div className="relative h-48">
+          <Image
+            loader={myLoader}
+            src={imageURL}
+            alt={name}
+            layout="fill"
+            objectFit="cover"
+            className="w-full"
+          />
+        </div>
       )}
-      <div className="absolute top-2 left-2 text-4xl font-bold text-white">
-        {id}
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 p-3">
-        <Link
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-white hover:text-yellow-300 transition duration-300"
-        >
-          <h2 className="text-lg font-bold mb-1">{name}</h2>
-        </Link>
-        <p className="text-gray-300 text-xs">{description}</p>
+      <div className="px-4 py-3 flex-grow flex flex-col h-48">
+        <h2 className="font-bold text-lg mb-2 text-gray-800 truncate text-center">
+          {name}
+        </h2>
+        <p className="text-gray-600 text-sm line-clamp-3 flex-grow">
+          {description}
+        </p>
+        <div className="mt-2 flex justify-between items-center flex-row">
+          <button className="text-blue-500 font-semibold text-sm">SHARE</button>
+          <Link href={url} className="text-blue-500 font-semibold text-sm">
+            LEARN MORE
+          </Link>
+        </div>
       </div>
     </div>
   );
