@@ -1,6 +1,6 @@
-# WEB103 Prework - _👉🏿 Creatorverse_
+# WEB103 Prework - _Creatorverse_
 
-Submitted by: \*_👉🏿 Nguyen Le_
+Submitted by: \*_Nguyen Le_
 
 About this web app: **👉🏿 CodePath Prework Web103**
 
@@ -35,16 +35,10 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-👉🏿<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='./Nguyen379-Web103.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<!-- Replace this with whatever GIF tool you used! -->
+GIF created with ... [https://getkap.co/]
 
-GIF created with ... 👉🏿 GIF tool here
-
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
 
