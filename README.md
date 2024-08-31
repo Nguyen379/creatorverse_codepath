@@ -6,6 +6,14 @@ About this web app: **👉🏿 CodePath Prework Web103**
 
 Time spent: **👉🏿 X** 24 hours
 
+## Video Walkthrough
+
+Here's a walkthrough of implemented required features:
+
+<img src='./Nguyen379-Web103.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with ... [https://getkap.co/]
+
 ## Required Features
 
 The following **required** functionality is completed:
@@ -31,20 +39,12 @@ The following **additional** features are implemented:
 
 - [x] Added layout.tsx for better formatting
 
-## Video Walkthrough
-
-Here's a walkthrough of implemented required features:
-
-<img src='./Nguyen379-Web103.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with ... [https://getkap.co/]
-
-
 ## Notes
 
 Describe any challenges encountered while building the app or any additional context you'd like to add.
 
-- It was a lot of work setting everything up but I learned a lot.
+- It was a lot of work designing everything but I learned a lot.
+- I had some trouble with NextJS and Supabase but I worked through it
 
 ## Getting Started
 
