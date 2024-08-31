@@ -5,50 +5,51 @@ import Card from "./components/Card";
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-// Mock data for demonstration
-const creators2 = [
-  {
-    id: "1",
-    name: "Gojo Satoru",
-    url: "https://jujutsu-kaisen.fandom.com/wiki/Satoru_Gojo",
-    description: "current strongest sorcerer",
-    imageURL:
-      "https://static1.dualshockersimages.com/wordpress/wp-content/uploads/2024/01/new-jujutsu-kaisen-theory-strongly-suggests-gojo-satoru-s-return.jpg",
-  },
-  {
-    id: "2",
-    name: "Ryoumen Sukuna",
-    url: "https://jujutsu-kaisen.fandom.com/wiki/Sukuna",
-    description: "history strongest sorcerer",
-    imageURL:
-      "https://www.themarysue.com/wp-content/uploads/2024/03/Jujutsu-Kaisen-manga-volume-cover-Megumi-and-manga-volume-cover-Sukuna-Gege-Akutami.jpg?w=1200",
-  },
-  {
-    id: "3",
-    name: "Spiderdan",
-    url: "https://marvels-spider-man.fandom.com/wiki/Peter_Parker",
-    description: "Peter Parker",
-    imageURL:
-      "https://image.api.playstation.com/vulcan/ap/rnd/202009/3021/SfK6snCLSX4qRfmIVQXrYXJK.png",
-  },
-  {
-    id: "4",
-    name: "Sun Wukong",
-    url: "https://en.wikipedia.org/wiki/Black_Myth:_Wukong",
-    description: "Victorious Fighting Buddha",
-    imageURL:
-      "https://cdn.mos.cms.futurecdn.net/FCY9PcBrhN3pfoNV7FfFTQ-1200-80.jpg",
-  },
-  {
-    id: "5",
-    name: "Gojo Satoru",
-    url: "https://frieren.fandom.com/wiki/Frieren",
-    description:
-      "Frieren ｢フリーレン Furīren?｣ is the main protagonist of Frieren: Beyond Journey's End. She was the Mage of the Hero Party and traveled alongside Himmel the Hero, Eisen the Warrior, and Heiter the Priest in a ten-year journey to defeat the Demon King. After Himmel's death, Frieren began journeying with Fern and Stark to visit Aureole and speak with Himmel once again.",
-    imageURL:
-      "https://cdn.vox-cdn.com/thumbor/PWNuyowyrraG2vH0UcQHB34QySQ=/0x0:1920x960/fit-in/1200x600/cdn.vox-cdn.com/uploads/chorus_asset/file/25349787/freiren3.jpg",
-  },
-];
+// Mock data for testing
+// const creators2 = [
+//   {
+//     id: "1",
+//     name: "Gojo Satoru",
+//     url: "https://jujutsu-kaisen.fandom.com/wiki/Satoru_Gojo",
+//     description: "current strongest sorcerer",
+//     imageURL:
+//       "https://static1.dualshockersimages.com/wordpress/wp-content/uploads/2024/01/new-jujutsu-kaisen-theory-strongly-suggests-gojo-satoru-s-return.jpg",
+//   },
+//   {
+//     id: "2",
+//     name: "Ryoumen Sukuna",
+//     url: "https://jujutsu-kaisen.fandom.com/wiki/Sukuna",
+//     description: "history strongest sorcerer",
+//     imageURL:
+//       "https://www.themarysue.com/wp-content/uploads/2024/03/Jujutsu-Kaisen-manga-volume-cover-Megumi-and-manga-volume-cover-Sukuna-Gege-Akutami.jpg?w=1200",
+//   },
+//   {
+//     id: "3",
+//     name: "Spiderdan",
+//     url: "https://marvels-spider-man.fandom.com/wiki/Peter_Parker",
+//     description: "Peter Parker",
+//     imageURL:
+//       "https://image.api.playstation.com/vulcan/ap/rnd/202009/3021/SfK6snCLSX4qRfmIVQXrYXJK.png",
+//   },
+//   {
+//     id: "4",
+//     name: "Sun Wukong",
+//     url: "https://en.wikipedia.org/wiki/Black_Myth:_Wukong",
+//     description: "Victorious Fighting Buddha",
+//     imageURL:
+//       "https://cdn.mos.cms.futurecdn.net/FCY9PcBrhN3pfoNV7FfFTQ-1200-80.jpg",
+//   },
+//   {
+//     id: "5",
+//     name: "Gojo Satoru",
+//     url: "https://frieren.fandom.com/wiki/Frieren",
+//     description:
+//       "Frieren ｢フリーレン Furīren?｣ is the main protagonist of Frieren: Beyond Journey's End. She was the Mage of the Hero Party and traveled alongside Himmel the Hero, Eisen the Warrior, and Heiter the Priest in a ten-year journey to defeat the Demon King. After Himmel's death, Frieren began journeying with Fern and Stark to visit Aureole and speak with Himmel once again.",
+//     imageURL:
+//       "https://cdn.vox-cdn.com/thumbor/PWNuyowyrraG2vH0UcQHB34QySQ=/0x0:1920x960/fit-in/1200x600/cdn.vox-cdn.com/uploads/chorus_asset/file/25349787/freiren3.jpg",
+//   },
+// ];
+
 interface Creator {
   id: string;
   name: string;
@@ -128,7 +129,7 @@ export default function Home() {
 
       <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
         <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://github.com/Nguyen379/creatorverse_codepath"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
           rel="noopener noreferrer"
@@ -140,7 +141,7 @@ export default function Home() {
             </span>
           </h2>
           <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
+            Read more about my project
           </p>
         </a>
 
@@ -179,7 +180,7 @@ export default function Home() {
         </a>
 
         <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://github.com/Nguyen379"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
           rel="noopener noreferrer"
@@ -191,7 +192,7 @@ export default function Home() {
             </span>
           </h2>
           <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+            Check out my other projects
           </p>
         </a>
       </div>
